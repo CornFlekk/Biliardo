@@ -1,2 +1,28 @@
-const colori = {1:"rgb(247, 229, 32)", 2:"rgb(32, 161, 247)", 3:"rgb(255, 38, 38)", 4:"rgb(200, 48, 255)", 5:"rgb(255, 124, 48)", 6:"rgb(48, 227, 66)", 7:"rgb(217, 52, 2)", 8:"black",
-9:"rgb(247, 229, 32)", 10:"rgb(32, 161, 247)", 11:"rgb(255, 38, 38)", 12:"rgb(200, 48, 255)", 13:"rgb(255, 124, 48)", 14:"rgb(48, 227, 66)", 15:"rgb(217, 52, 2)"};
+//uso la strict mode, una modalità che cambia la gestione degli errori e delle classi, rendendo il codice più veloce
+"use strict";
+
+//definisco sfondo2D usato come classe (le variabili vengono riferite con this perchè è una funzione generica)
+function Sfondo2D() {
+	this.schermo = document.getElementById("schermo");
+	this.context = schermo.getContext("2d");
+}
+
+//prototype è usato per accedere ai metodi (e attributi) della classe padre. in questi casi ridefinisco clear e drawImage
+Sfondo2D.prototype.clear = function() {
+	this.context.clearRect(0, 0, this.schermo.width, this.schermo.height);
+}
+
+Sfondo2D.prototype.drawImage = function(immagine, posizione) {
+	this.context.drawImage(immagine, posizione.x, posizione.y, this.schermo.width, this.schermo.height);
+}
+
+let Sfondo = new Sfondo2D();
+
+
+//Test
+let img=new Image();
+img.src= "assets/tavolo.png";
+
+setTimeout(() => {
+	Sfondo.drawImage(img, {x:0, y:0});
+}, 1000);
