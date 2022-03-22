@@ -1,5 +1,5 @@
 function Stecca() {
-	this.posizione = {x: 0, y: schermo.height/2};
+	this.posizione = {x: 0-(sprites.stick.width/2), y: schermo.height/2};
 }
 
 Stecca.prototype.update = function() {
