@@ -17,12 +17,3 @@ Sfondo2D.prototype.drawImage = function(immagine, posizione) {
 }
 
 let Sfondo = new Sfondo2D();
-
-
-//Test
-let img=new Image();
-img.src= "assets/tavolo.png";
-
-setTimeout(() => {
-	Sfondo.drawImage(img, {x:0, y:0});
-}, 1000);
