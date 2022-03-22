@@ -12,8 +12,8 @@ Sfondo2D.prototype.clear = function() {
 	this.context.clearRect(0, 0, this.schermo.width, this.schermo.height);
 }
 
-Sfondo2D.prototype.drawImage = function(immagine, posizione) {
-	this.context.drawImage(immagine, posizione.x, posizione.y, this.schermo.width, this.schermo.height);
+Sfondo2D.prototype.drawImage = function(immagine, posizione, grandezza) {
+	this.context.drawImage(immagine, posizione.x, posizione.y, grandezza.hx, grandezza.hy);
 }
 
 let Sfondo = new Sfondo2D();
