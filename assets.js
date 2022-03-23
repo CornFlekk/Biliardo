@@ -26,7 +26,8 @@ function loadAssets(callback) {
 	}
 
 	sprites.background = loadSprite("tavolo.png");
-	sprites.stick = loadSprite("stecca.png");
+	sprites.stecca = loadSprite("stecca.png");
+	sprites.pallaBianca = loadSprite("pallaBianca.png");
 
 	assetsLoadingLoop(callback);
 }

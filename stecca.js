@@ -1,5 +1,6 @@
 function Stecca() {
-	this.posizione = {x: 0-(sprites.stick.width/2), y: schermo.height/2};
+	this.posizione = new Vector2(0, 0);
+	this.origine = new Vector2(sprites.stecca.width/2, sprites.stecca.height);
 }
 
 Stecca.prototype.update = function() {
@@ -11,5 +12,5 @@ Stecca.prototype.update = function() {
 }
 
 Stecca.prototype.draw = function() {
-	Sfondo.drawImage(sprites.stick, this.posizione, {hx: sprites.stick.width/2, hy: sprites.stick.height/2});
+	Sfondo.drawImage(sprites.stick, this.posizione, this.origine);
 }
