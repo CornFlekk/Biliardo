@@ -3,10 +3,11 @@ function Stecca() {
 }
 
 Stecca.prototype.update = function() {
+	this.posizione = Mouse.posizione;
 
-//Test
-	this.posizione.x++;
-
+	if(Mouse.left.pressed) {
+		console.log("Pressed left");
+	}
 }
 
 Stecca.prototype.draw = function() {
