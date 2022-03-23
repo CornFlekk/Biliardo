@@ -1,16 +1,13 @@
-function Stecca() {
-	this.posizione = new Vector2(0, 0);
-	this.origine = new Vector2(sprites.stecca.width/2, sprites.stecca.height);
+const ORIGINE_STECCA = new Vector2(720, 2);
+
+function Stecca(posizione) {
+	this.posizione = posizione;
 }
 
 Stecca.prototype.update = function() {
-	this.posizione = Mouse.posizione;
 
-	if(Mouse.left.pressed) {
-		console.log("Pressed left");
-	}
 }
 
 Stecca.prototype.draw = function() {
-	Sfondo.drawImage(sprites.stick, this.posizione, this.origine);
+	Sfondo.drawImage(sprites.stecca, this.posizione, ORIGINE_STECCA);
 }
