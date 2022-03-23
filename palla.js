@@ -1,4 +1,4 @@
-const ORIGINE_PALLA = new Vector2(12, 12);
+const ORIGINE_PALLA = new Vector2(25, 25);
 
 function Palla(posizione) {
 	this.posizione = posizione;

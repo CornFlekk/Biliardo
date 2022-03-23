@@ -1,4 +1,4 @@
-const ORIGINE_STECCA = new Vector2(720, 0);
+const ORIGINE_STECCA = new Vector2(970, 11);
 
 function Stecca(posizione) {
 	this.posizione = posizione;
@@ -16,5 +16,8 @@ Stecca.prototype.draw = function() {
 }
 
 Stecca.prototype.updateRotation = function () {
-	this.rotazione = Math.atan2((Mouse.posizione.y - this.posizione.y), (Mouse.posizione.x - this.posizione.x));
+	let op = Mouse.posizione.y - this.posizione.y;
+	let ad = Mouse.posizione.x - this.posizione.x;
+
+	this.rotazione = Math.atan2(op, ad);
 }
