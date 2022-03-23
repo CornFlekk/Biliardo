@@ -24,6 +24,8 @@ Game.prototype.mainLoop = function() {
 
 	Biliardo.gameWorld.update();
 	Biliardo.gameWorld.draw();
+	
+	Mouse.reset();
 
 	requestAnimationFrame(Biliardo.mainLoop);
 
