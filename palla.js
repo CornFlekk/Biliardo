@@ -9,5 +9,5 @@ Palla.prototype.update = function () {
 }
 
 Palla.prototype.draw = function () {
-	Sfondo.drawImage(sprites.whiteBall, this.posizione, ORIGINE_PALLA);
+	Sfondo.drawImage(sprites.pallaBianca, this.posizione, ORIGINE_PALLA);
 }
