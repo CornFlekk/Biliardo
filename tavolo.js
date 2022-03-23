@@ -12,7 +12,7 @@ Sfondo2D.prototype.clear = function() {
 	this.context.clearRect(0, 0, this.schermo.width, this.schermo.height);
 }
 
-Sfondo2D.prototype.drawImage = function(immagine, posizione, origine) {
+Sfondo2D.prototype.drawImage = function(immagine, posizione, origine, rotazione = 0) {
 
 	if(!posizione) {
 		posizione = new Vector2();
@@ -23,6 +23,7 @@ Sfondo2D.prototype.drawImage = function(immagine, posizione, origine) {
 	}
 	this.context.save();
 	this.context.translate(posizione.x, posizione.y);
+	this.context.rotate(rotazione);
 	this.context.drawImage(immagine, -origine.x, -origine.y);
 	this.context.restore();
 }
