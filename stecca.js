@@ -1,5 +1,6 @@
 const ORIGINE_STECCA = new Vector2(970, 11);
 const ORIGINE_STECCA_TIRO = new Vector2(950, 11);
+const MAX_POTENZA = 5500;
 
 function Stecca(posizione, sulTiro) {
 	this.posizione = posizione;
@@ -12,7 +13,7 @@ function Stecca(posizione, sulTiro) {
 
 Stecca.prototype.update = function() {
 
-	if(Mouse.left.down) {
+	if(Mouse.left.down && !ballsMoving) {
 		this.incrementaPotenza();
 	}
 	else if(this.potenza>0) {
@@ -41,7 +42,10 @@ Stecca.prototype.updateRotation = function () {
 }
 
 Stecca.prototype.incrementaPotenza = function() {
-	this.potenza+=100;
+	if(this.potenza>MAX_POTENZA) {
+		return;
+	}
+	this.potenza+=120;
 	this.origine.x+=5;
 }
 

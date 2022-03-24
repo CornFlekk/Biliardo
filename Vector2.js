@@ -20,3 +20,15 @@ Vector2.prototype.mult = function(scalar) {
 Vector2.prototype.length = function() {
 	return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2)); //teorema di pitagora
 }
+
+Vector2.prototype.add = function(vector) {
+	return new Vector2(this.x + vector.x, this.y + vector.y);
+}
+
+Vector2.prototype.sub = function(vector) {
+	return new Vector2(this.x - vector.x, this.y - vector.y);
+}
+
+Vector2.prototype.dot = function(vector) {
+	return this.x * vector.x + this.y * vector.y;
+}
