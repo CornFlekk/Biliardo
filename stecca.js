@@ -19,7 +19,9 @@ Stecca.prototype.update = function() {
 		this.tira();
 	}
 
-	this.updateRotation();
+	if(!this.tiro) {
+		this.updateRotation();
+	}
 
 }
 
