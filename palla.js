@@ -77,6 +77,7 @@ Palla.prototype.collisioneConPalla = function(palla) {
 
 		this.muovendo = true;
 		palla.muovendo = true;
+		sounds.poolshot.play();
 }
 
 Palla.prototype.collisioneConTavolo = function(tavolo) {
