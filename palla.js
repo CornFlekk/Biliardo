@@ -87,27 +87,31 @@ Palla.prototype.collisioneConTavolo = function(tavolo) {
 	let collisione = false;
 
 	//sopra
-	if(this.posizione.y <= tavolo.TopY + RAGGIO_PALLA) {
+	if(this.posizione.y <= tavolo.TopY + RAGGIO_PALLA + 0.15) {
 		this.velocita = new Vector2(this.velocita.x, -this.velocita.y);
 		collisione=true;
 	}
 
 	//destra
-	if(this.posizione.x >= tavolo.RightX - RAGGIO_PALLA) {
+	if(this.posizione.x >= tavolo.RightX - RAGGIO_PALLA - 0.15) {
 		this.velocita = new Vector2(-this.velocita.x, this.velocita.y);
 		collisione=true;
 	}
 
 	//sotto
-	if(this.posizione.y >= tavolo.BottomY - RAGGIO_PALLA) {
+	if(this.posizione.y >= tavolo.BottomY - RAGGIO_PALLA - 0.15) {
 		this.velocita = new Vector2(this.velocita.x, -this.velocita.y);
 		collisione=true;
 	}
 
 	//sinistra
-	if(this.posizione.x <= tavolo.LeftX + RAGGIO_PALLA) {
+	if(this.posizione.x <= tavolo.LeftX + RAGGIO_PALLA + 0.15) {
 		this.velocita = new Vector2(-this.velocita.x, this.velocita.y);
 		collisione=true;
+	}
+
+	if(collisione) {
+		this.velocita = this.velocita.mult(0.984);
 	}
 }
 

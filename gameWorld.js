@@ -3,8 +3,26 @@ var ballsMoving = false;
 
 function GameWorld() {
 
-	this.pallaNera = new Palla(new Vector2(860, 360), COLORE.NERO);
-	this.pallaBianca = new Palla(new Vector2(320, 360), COLORE.BIANCO);
+	this.palle = [
+		[new Vector2(890, 360), COLORE.NERO],//palla1
+		[new Vector2(925, 377.5), COLORE.NERO],//palla2
+		[new Vector2(925, 342.5), COLORE.NERO],//palla3
+		[new Vector2(960, 360), COLORE.NERO],//PALLA NERA 8
+		[new Vector2(960, 395), COLORE.NERO],//palla5
+		[new Vector2(960, 325), COLORE.NERO],//palla6
+		[new Vector2(995, 377.5), COLORE.NERO],//palla7
+		[new Vector2(995, 342.5), COLORE.NERO],//palla8
+		[new Vector2(995, 412.5), COLORE.NERO],//palla9
+		[new Vector2(995, 307.5), COLORE.NERO],//palla10
+		[new Vector2(1030, 360), COLORE.NERO],//palla11
+		[new Vector2(1030, 395), COLORE.NERO],//palla12
+		[new Vector2(1030, 325), COLORE.NERO],//palla13
+		[new Vector2(1030, 430), COLORE.NERO],//palla14
+		[new Vector2(1030, 290), COLORE.NERO],//palla15
+		[new Vector2(320, 360), COLORE.BIANCO] //bianca
+	].map(params => new Palla(params[0], params[1]));
+
+	this.pallaBianca = this.palle[this.palle.length - 1];
 
 	this.stecca = new Stecca(new Vector2(320, 360), this.pallaBianca.tira.bind(this.pallaBianca));
 
@@ -20,8 +38,9 @@ GameWorld.prototype.update = function() {
 
 	this.gestisciCollisioni();
 
-	this.pallaNera.update(DELTA);
-	this.pallaBianca.update(DELTA);
+	for(let i=0; i<this.palle.length; i++) {
+		this.palle[i].update(DELTA);
+	}
 	this.stecca.update();
 
 	if(!this.ballsMoving() && this.stecca.tiro) {
@@ -33,16 +52,20 @@ GameWorld.prototype.draw = function() {
 
 	Sfondo.drawImage(sprites.background, {x: 0, y: 0});
 
-	this.pallaBianca.draw();
-	this.pallaNera.draw();
+	for(let i=0; i<this.palle.length; i++) {
+		this.palle[i].draw();
+	}
 	this.stecca.draw();
 
 }
 
 GameWorld.prototype.gestisciCollisioni = function() {
-	this.pallaBianca.collisioneCon(this.tavolo);
-	this.pallaNera.collisioneCon(this.tavolo);
-	this.pallaBianca.collisioneCon(this.pallaNera);
+	for(let i=0; i<this.palle.length; i++) {
+		this.palle[i].collisioneCon(this.tavolo);
+		for(let j=i+1; j<this.palle.length; j++) {
+			this.palle[i].collisioneCon(this.palle[j]);
+		}
+	}
 }
 
 GameWorld.prototype.ballsMoving = function() {
@@ -50,7 +73,7 @@ GameWorld.prototype.ballsMoving = function() {
 		ballsMoving = true;
 		return true;
 	}
-	if(this.pallaNera.muovendo) {
+	if(this.palle[0].muovendo) {
 		ballsMoving = true;
 		return true;
 	}
