@@ -1,6 +1,6 @@
 const ORIGINE_STECCA = new Vector2(970, 11);
 const ORIGINE_STECCA_TIRO = new Vector2(950, 11);
-const MAX_POTENZA = 5000;
+const MAX_POTENZA = 4500;
 
 function Stecca(posizione, sulTiro) {
 	this.posizione = posizione;

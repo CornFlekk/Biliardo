@@ -25,6 +25,7 @@ Palla.prototype.draw = function () {
 
 Palla.prototype.tira = function(potenza, rotazione) {
 	console.log("tiro");
+	sounds.poolshot.play();
 	this.velocita = new Vector2(potenza * Math.cos(rotazione),potenza * Math.sin(rotazione));
 	this.muovendo = true;
 }
@@ -77,7 +78,11 @@ Palla.prototype.collisioneConPalla = function(palla) {
 
 		this.muovendo = true;
 		palla.muovendo = true;
-		sounds.poolshot.play();
+		let played = false
+		if(ballsMoving && !played) {
+			sounds.poolshot.cloneNode(!played).play();
+			played = true;
+		}
 }
 
 Palla.prototype.collisioneConTavolo = function(tavolo) {
