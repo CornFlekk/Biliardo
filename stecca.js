@@ -1,23 +1,58 @@
 const ORIGINE_STECCA = new Vector2(970, 11);
+const ORIGINE_STECCA_TIRO = new Vector2(950, 11);
 
-function Stecca(posizione) {
+function Stecca(posizione, sulTiro) {
 	this.posizione = posizione;
 	this.rotazione = 0;
+	this.origine = ORIGINE_STECCA.copy();
+	this.potenza = 0;
+	this.sulTiro = sulTiro;
+	this.tiro = false;
 }
 
 Stecca.prototype.update = function() {
+
+	if(Mouse.left.down) {
+		this.incrementaPotenza();
+	}
+	else if(this.potenza>0) {
+		this.tira();
+	}
 
 	this.updateRotation();
 
 }
 
 Stecca.prototype.draw = function() {
-	Sfondo.drawImage(sprites.stecca, this.posizione, ORIGINE_STECCA, this.rotazione);
+	Sfondo.drawImage(sprites.stecca, this.posizione, this.origine, this.rotazione);
 }
 
 Stecca.prototype.updateRotation = function () {
 	let op = Mouse.posizione.y - this.posizione.y;
 	let ad = Mouse.posizione.x - this.posizione.x;
 
+	// let op = this.posizione.y - Mouse.posizione.y;
+	// let ad = this.posizione.x - Mouse.posizione.x;
+	// inverso
+
 	this.rotazione = Math.atan2(op, ad);
+}
+
+Stecca.prototype.incrementaPotenza = function() {
+	this.potenza+=100;
+	this.origine.x+=5;
+}
+
+Stecca.prototype.tira = function() {
+	this.sulTiro(this.potenza, this.rotazione); //richiama il tiro della palla
+	this.potenza = 0;
+	this.origine = ORIGINE_STECCA_TIRO.copy();
+	this.tiro = true;
+}
+
+Stecca.prototype.riposiziona = function(posizione) {
+	this.posizione = posizione.copy();
+	this.origine = ORIGINE_STECCA.copy();
+	console.log("a");
+	this.tiro = false;
 }
