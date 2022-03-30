@@ -25,7 +25,6 @@ Palla.prototype.draw = function () {
 
 Palla.prototype.tira = function(potenza, rotazione) {
 	console.log("tiro");
-	sounds.poolshot.play();
 	this.velocita = new Vector2(potenza * Math.cos(rotazione),potenza * Math.sin(rotazione));
 	this.muovendo = true;
 }
@@ -37,7 +36,6 @@ Palla.prototype.collisioneConPalla = function(palla) {
 
 		//Ricerca distanza
 		const dist = n.length();
-
 		if(dist>DIAMETRO_PALLA) {
 			return;
 		}
@@ -78,11 +76,6 @@ Palla.prototype.collisioneConPalla = function(palla) {
 
 		this.muovendo = true;
 		palla.muovendo = true;
-		let played = false
-		if(ballsMoving && !played) {
-			sounds.poolshot.cloneNode(!played).play();
-			played = true;
-		}
 }
 
 Palla.prototype.collisioneConTavolo = function(tavolo) {
@@ -95,24 +88,28 @@ Palla.prototype.collisioneConTavolo = function(tavolo) {
 	//sopra
 	if(this.posizione.y <= tavolo.TopY + RAGGIO_PALLA + 0.15) {
 		this.velocita = new Vector2(this.velocita.x, -this.velocita.y);
+		this.posizione = new Vector2(this.posizione.x, this.posizione.y + 1);
 		collisione=true;
 	}
 
 	//destra
 	if(this.posizione.x >= tavolo.RightX - RAGGIO_PALLA - 0.15) {
 		this.velocita = new Vector2(-this.velocita.x, this.velocita.y);
+		this.posizione = new Vector2(this.posizione.x - 1, this.posizione.y);
 		collisione=true;
 	}
 
 	//sotto
 	if(this.posizione.y >= tavolo.BottomY - RAGGIO_PALLA - 0.15) {
 		this.velocita = new Vector2(this.velocita.x, -this.velocita.y);
+		this.posizione = new Vector2(this.posizione.x, this.posizione.y - 1)
 		collisione=true;
 	}
 
 	//sinistra
 	if(this.posizione.x <= tavolo.LeftX + RAGGIO_PALLA + 0.15) {
 		this.velocita = new Vector2(-this.velocita.x, this.velocita.y);
+		this.posizione = new Vector2(this.posizione.x + 1, this.posizione.y);
 		collisione=true;
 	}
 

@@ -1,5 +1,6 @@
 const DELTA = 1/180; //velocità di ciclo di gioco
 var ballsMoving = false;
+var nCollisioni = 0;
 
 function GameWorld() {
 
@@ -69,16 +70,12 @@ GameWorld.prototype.gestisciCollisioni = function() {
 }
 
 GameWorld.prototype.ballsMoving = function() {
-	if(this.pallaBianca.muovendo) {
-		ballsMoving = true;
-		return true;
+	for(var i=0; i<this.palle.length; i++) {
+		if(this.palle[i].muovendo) {
+			ballsMoving = true;
+			return true;
+		}
 	}
-	if(this.palle[0].muovendo) {
-		ballsMoving = true;
-		return true;
-	}
-	else {
-		ballsMoving = false;
-		return false;
-	}
+	ballsMoving = false
+	return false;
 }

@@ -59,6 +59,6 @@ Stecca.prototype.tira = function() {
 Stecca.prototype.riposiziona = function(posizione) {
 	this.posizione = posizione.copy();
 	this.origine = ORIGINE_STECCA.copy();
-	console.log("a");
+	console.log("riposiziona stecca");
 	this.tiro = false;
 }
