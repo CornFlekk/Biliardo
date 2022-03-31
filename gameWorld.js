@@ -28,10 +28,14 @@ function GameWorld() {
 	this.stecca = new Stecca(new Vector2(320, 360), this.pallaBianca.tira.bind(this.pallaBianca));
 
 	this.tavolo = {
-		TopY: 80,
-		RightX: 1195,
-		BottomY: 640,
-		LeftX: 80
+		TopY: 82,
+		RightX: 1196,
+		BottomY: 648,
+		LeftX: 82
+	}
+
+	this.buche = {
+		b1: new Buca(new Vector2(360, 360))
 	}
 }
 

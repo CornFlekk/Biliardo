@@ -11,7 +11,7 @@ function Palla(posizione, colore) {
 
 Palla.prototype.update = function (delta) {
 	this.posizione.addTo(this.velocita.mult(delta));
-	this.velocita = this.velocita.mult(0.984); //simulazione della frizione;
+	this.velocita = this.velocita.mult(0.980653); //simulazione della frizione in/ad Trieste;
 
 	if(this.velocita.length()<5) {
 		this.velocita = new Vector2();
@@ -121,6 +121,9 @@ Palla.prototype.collisioneConTavolo = function(tavolo) {
 Palla.prototype.collisioneCon = function(object) {
 	if(object instanceof Palla) {
 		this.collisioneConPalla(object);
+	}
+	else if(object instanceof Buca) {
+		this.inBuca(this);
 	}
 	else {
 		this.collisioneConTavolo(object);
